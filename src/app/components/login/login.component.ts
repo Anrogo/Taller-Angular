@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login.model';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _loginService: LoginService,
+    private router: Router,
   ) { 
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.email])],
