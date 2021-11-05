@@ -1,0 +1,25 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+        Usuario: eve.holt@reqres.in<br /> Contraseña: cityslicka
+    </div>
+    <form [formGroup]="this.loginForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email usuario</label>
+            <input type="email" formControlName="username" class="form-control" [ngClass]="{'is-invalid': this.enviado && this.loginForm.controls.username.errors}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduce tu email">
+            <div class="invalid-feedback" *ngIf="enviado && this.loginForm.controls.username.errors?.required">¡Tienes que rellenar este campo!</div>
+            <div class="invalid-feedback" *ngIf="enviado && this.loginForm.controls.username.errors?.email">¡El email no es válido!</div>
+            <!-- <div>Controles: {{this.loginForm.controls.username.errors | json}}</div> -->
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': this.enviado && this.loginForm.controls.password.errors}" id="exampleInputPassword1" placeholder="Contraseña">
+            <small id="passwordHelp" class="form-text text-muted">Nunca compartas tus credenciales con nadie.</small>
+            <div class="invalid-feedback" *ngIf="enviado && this.loginForm.controls.password.errors?.required">¡Tienes que rellenar este campo!</div>
+        </div>
+        <button [disabled]="spinner" type="submit" class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm mr-1" *ngIf="spinner"></span>
+            Iniciar sesión
+          </button>
+    </form>
+    <div class="alert alert-danger mt-2" *ngIf="errorMsg!=null">{{errorMsg}}</div>
+</div>
